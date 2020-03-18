@@ -1,0 +1,147 @@
+---
+title: "Customer Segmentation 2"
+author: "Su Gnee Ng"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+customer_data=read.csv("Mall_Customers.csv") 
+str(customer_data)
+head(customer_data)
+summary(customer_data$Age) 
+sex=customer_data$Gender
+
+
+```
+
+```{r mt-plot}
+
+p<-ggplot(data=customer_data, mapping=aes(x=sex,fill=sex))
+p+geom_bar()+labs(title="Using barplot to display gender comparison")
+
+```
+
+From the plot, we find that there is a higher number of females than males.
+
+```{r}
+age=customer_data$Age
+
+```
+
+
+```{r plotAge}
+p<-ggplot(data=customer_data, mapping = aes(x=age))
+p+geom_histogram(binwidth=10, fill="#69b3a2", color="#e9ecef")
+
+
+```
+
+
+From the above visualization, the maximum agegroup is 30 to 35.
+```{R plothistogram}
+
+boxplot(customer_data$Age, col="#ff0066", main="Boxplot for Descriptive Analysis of Age") 
+```
+
+
+From the above plot the min age is 18 and Max age is 70.
+
+```{r}
+spendingScore=customer_data$Spending.Score..1.100.
+summary(spendingScore)
+```
+
+```{r plotIncome}
+p<-ggplot(data=customer_data, mapping = aes(x=spendingScore))
+p+geom_histogram(binwidth=10, fill="#C06C84", color="#e9ecef")
+  
+```
+
+
+The minimum spending score is 1, maximum is 99 and the average is 50.20. We can see Descriptive Analysis of Spending Score is that Min is 1, Max is 99 and avg. is 50.20. From the histogram, we conclude that customers between class 40 and 50 have the highest spending score among all the classes.
+
+
+```{r}
+income=customer_data$Annual.Income..k..
+summary(income)
+
+```
+
+```{r plotIncomeDensityPolygon}
+p+geom_density(data=customer_data,mapping=aes(x=income),fill="#ccff66") +labs(title="Using histogram to display Annual Income")
+```
+
+
+we conclude that the minimum annual income of the customers is 15 and the maximum income is 137. People earning an average income of 70 have the highest frequency count in our histogram distribution. The average salary of all the customers is 60.56. In the Kernel Density Plot that we displayed above, we observe that the annual income has a normal distribution.
+
+```{r}
+library(purrr)
+set.seed(123)
+# function to calculate total intra-cluster sum of square 
+iss <- function(k) {
+  kmeans(customer_data[,3:5],k,iter.max=100,nstart=100,algorithm="Lloyd" )$tot.withinss
+}
+
+k.values <- 1:10
+
+
+iss_values <- map_dbl(k.values, iss)
+
+plot(k.values, iss_values,
+    type="b", pch = 19, frame = FALSE, 
+    xlab="Number of clusters K",
+    ylab="Total intra-clusters sum of squares")
+```
+
+K-means Algorithm is used to calculate 
+the clustering algorithm for several values of k. This is done by creating a variation within k from 1 to 10 clusters. Then we compute total intra-cluster sum of square(iss). We then plot iss based on the number of k clusters. The bend or elbow of the plot indicates the optimal number of clusters. In this plot, 4 is the optimal number of clusters,
+
+```{r}
+k4<-kmeans(customer_data[,3:5],4,iter.max=100,nstart=50,algorithm="Lloyd")
+k4
+
+set.seed(1)
+ggplot(customer_data, aes(x =Annual.Income..k.., y = Spending.Score..1.100.)) + 
+  geom_point(stat = "identity", aes(color = as.factor(k4$cluster))) +
+  scale_color_discrete(name=" ",
+              breaks=c("1", "2", "3", "4"),
+              labels=c("Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4")) +
+  ggtitle("Segments of Mall Customers", subtitle = "Using K-means Clustering")
+```
+ 
+```{r}
+k6<-kmeans(customer_data[,3:5],6,iter.max=100,nstart=50,algorithm="Lloyd")
+k6
+
+set.seed(1)
+ggplot(customer_data, aes(x =Annual.Income..k.., y = Spending.Score..1.100.)) + 
+  geom_point(stat = "identity", aes(color = as.factor(k6
+                                                      $cluster))) +
+  scale_color_discrete(name=" ",
+              breaks=c("1", "2", "3", "4", "5","6"),
+              labels=c("Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5","Cluster 6")) +
+  ggtitle("Segments of Mall Customers", subtitle = "Using K-means Clustering")
+```
+
+From the visualization we observe that there is a distribution of 6 clusters, as follows:
+
+Cluster 3,4- customers with medium income and medium spending
+
+Cluster 5- cutomers with high income and low spending power
+
+Cluter 2- customers with low income and low spending power
+
+Cluster 1- customers with low income and high spending power
+
+Cluster 6- customers with high income and high spending power
+
+
+
+From the visualization we observe that there is a distribution of 4 clusters, as follows:
+Cluster 3 - Low spenders
+Cluster 1 - Medium spenders
+Cluster 2 & 4 - High spenders. This group of people are between the age group 20 to 40. This leads to the conclusion that people of age group 20 to 40 are the highest spenders in this mall. Hence the mall tenants should sell products appealing to this age group.
+
+
+
