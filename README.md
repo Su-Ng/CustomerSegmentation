@@ -3,7 +3,13 @@
 Customer Segmentation is an interesting data science application. I will be using it to analyse the age, income, gender of the people shopping in the mall.
 
 ![Alt text](RplotGender.png?raw=true "Title")
+
+The above visualization shows that there is a higher number of females than males in the mall. 
+
+
 ![Alt text](RplotAge.png?raw=true "Title")
+
+The above visualization shows that there is 
 
 This idea to do this is to gain insights into what are the demographics of the people shopping in the mall. I want to find out who are the highest spenders in the mall. With this knowledge and insight, we can target the right consumers who are most likely to spend.
 
