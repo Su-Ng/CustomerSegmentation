@@ -11,7 +11,7 @@ The above visualization shows that there is a higher number of females than male
 
 The above visualization shows that the maximum age group is 30 to 35. 
 
-![Alt text](RplotBoxPlot.png?raw=true "Title")
+![Alt text](RplotBoxplotAge.png?raw=true "Title")
 
 The above visualization shows the minimum age is 18 and the maximum age is 70.
 
