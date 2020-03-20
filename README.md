@@ -9,7 +9,11 @@ The above visualization shows that there is a higher number of females than male
 
 ![Alt text](RplotAge.png?raw=true "Title")
 
-The above visualization shows that there is 
+The above visualization shows that the maximum age group is 30 to 35. 
+
+![Alt text](RplotBoxPlot.png?raw=true "Title")
+
+The above visualization shows the minimum age is 18 and the maximum age is 70.
 
 This idea to do this is to gain insights into what are the demographics of the people shopping in the mall. I want to find out who are the highest spenders in the mall. With this knowledge and insight, we can target the right consumers who are most likely to spend.
 
