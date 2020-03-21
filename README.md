@@ -1,6 +1,6 @@
 
 
-Customer Segmentation is an interesting data science application. I will be using it to analyse the age, income, gender of the people shopping in the mall.
+Customer Segmentation is an interesting data science application. I will be using it to analyse the age, income, gender of the people shopping in the mall. In addition I will be using machine learning techniques to help to come up with a better strategy to market the products to the right segment of the shoppers in the mall.
 
 ![Alt text](RplotGender.png?raw=true "Title")
 
