@@ -35,6 +35,12 @@ K means algorithm calculates the clustering algorithm for several values of K. W
 
 ![Alt text](RplotKnn6.png?raw=true "Title")
 
-From the visualization we observe 4 clusters.
+From the visualization we observe 5 clusters. 
+Cluster 3 and 4 have medium income and medium spending.
+Cluster 1 have low income, high spending.   
+Cluster 2 have low income, low spending.
+Cluster 5 have high income, low spending.
+Cluster 6 have high income, high spending.
 
-Cluster   
+We can target the high income and high spending people shopping in the mall to buy more.
+
